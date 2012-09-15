@@ -1,0 +1,6 @@
+[submodule "github.com/suapapa/go_braille"]
+	path = github.com/suapapa/go_braille
+	url = https://github.com/suapapa/go_braille
+[submodule "github.com/suapapa/go_hangul"]
+	path = github.com/suapapa/go_hangul
+	url = https://github.com/suapapa/go_hangul
