@@ -1,0 +1,32 @@
+@startuml
+
+actor User
+participant Webpage as "Webpage\n(HTML5)"
+participant AppEngine as "BraillePrinter\n(AppEngine in Go)"
+participant go_hangul as "Hangul package in Go" #FF4500
+participant go_braille as "Braille package in Go" #FF4500
+participant PrinterClient as "BraillePrinterClient\n(Printer client)"
+participant Printer as "Physical braille printer\n(Arduino)"
+
+User -> Webpage			: Voice input
+Webpage -> Webpage		: Convert voice to string
+Webpage -> AppEngine		: Input String
+AppEngine -> go_braille		: Input String
+go_braille -> go_braille	: Encode number and English aplphabet to braille
+go_braille -> go_hangul		: Hangul characters
+go_hangul -> go_hangul		: Split Hangul to jamo
+go_hangul --> go_braille	: Hangul-jamo
+go_braille -> go_braille	: Encode Hangul-jamo to braille
+go_braille --> AppEngine	: Braille string
+AppEngine -> AppEngine		: Queue it
+AppEngine --> User		: Show it
+PrinterClient -> AppEngine	: Query queued list of braille strings (OpenAPI)
+PrinterClient -> AppEngine	: Query braille strings of queue index (OpenAPI)
+AppEngine --> PrinterClient	: Braille string
+PrinterClient -> go_braille	: Braille Chracter
+go_braille --> PrinterClient	: Dots index
+PrinterClient -> Printer	: Dots index
+Printer -> Printer		: Emboss it
+Printer --> User		: Braille lable
+
+@enduml
