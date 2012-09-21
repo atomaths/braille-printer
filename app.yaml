@@ -1,5 +1,5 @@
 application: braille-printer
-version: 1
+version: 2
 runtime: go
 api_version: go1
 
@@ -7,6 +7,13 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+
+- url: /static
+  static_dir: static
+
+- url: /root/.*
+  script: _go_app
+  login: admin
 
 - url: /.*
   script: _go_app

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=880" />
+  <meta name="application-name" content="Braille Printer">
+  <meta name="keywords" content="braille printer, 점자 프린터">
+  <meta name="description" content="Cloud Braille Printer, 클라우드 점자 프린터">
+  <title>Braille Printer</title>
+  <link rel="stylesheet" href="/static/index.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+  <script src="/static/index.js"></script>
+</head>
+<body>
+
+<div style="width: 100%; text-align: center; margin-top: 20px;">
+<div style="width: 800px; display: inline-block; border:">
+
+  <h2 style="font-family: Arial">Braille Printer</h2>
+  <h3>⠠⠃⠗⠁⠊⠇⠇⠑⠀⠠⠏⠗⠊⠝⠞⠑⠗</h3>
+  
+  <div>
+    <input id="b-input" name="b-input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="en-US">
+  </div>
+  <div style="margin-top: 10px;">
+    <button id="btn-braille" class="btn">braille</button>
+  </div>
+    
+  <div id="ly-result" style="display: none;">
+    <textarea id="result" rows="1" cols="55" readonly="readonly"></textarea>
+    <div style="text-align: right; margin-right: 45px;">
+      <button id="btn-print" style="width: 70px; height: 33px; font-size: 16px;">print</button>
+    </div>
+  </div>
+    
+</div>
+</div>
+
+</body>
+</html>
