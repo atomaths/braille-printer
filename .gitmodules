@@ -4,3 +4,6 @@
 [submodule "github.com/suapapa/go_hangul"]
 	path = github.com/suapapa/go_hangul
 	url = https://github.com/suapapa/go_hangul
+[submodule "github.com/ajstarks/svgo"]
+	path = github.com/ajstarks/svgo
+	url = https://github.com/ajstarks/svgo
