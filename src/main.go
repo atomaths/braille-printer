@@ -6,7 +6,8 @@ package brailleprinter
 import (
 	"fmt"
 	"net/http"
-	braille "github.com/suapapa/go_braille"
+	//brl "github.com/suapapa/go_braille"
+	brl_ko "github.com/suapapa/go_braille/ko"
 )
 
 func init() {
@@ -42,5 +43,5 @@ func brailleHandler(w http.ResponseWriter, r *http.Request) {
 	src := r.FormValue("b-input")
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, braille.Encode(src))
+	fmt.Fprint(w, brl_ko.Encode(src))
 }

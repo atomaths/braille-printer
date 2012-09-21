@@ -4,7 +4,7 @@ Source of [Braille Printer](http://braille-printer.appspot.com/)
 
 ## Dependency
 
-It uses [hangul](https://github.com/suapapa/go_hagul)
+It uses [hangul](https://github.com/suapapa/go_hangul)
 and [braille](go_braille) as submodule.
 Issue following command to update them.
 
