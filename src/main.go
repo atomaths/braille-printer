@@ -1,8 +1,7 @@
-// Copyright 2011 Google Inc. All rights reserved.
-// Use of this source code is governed by the Apache 2.0
-// license that can be found in the LICENSE file.
+// Copyright 2012 Braille Printer Team. All rights reserved.
+// Use of this source code is governed by the Apache 2.0 license.
 
-package helloworld
+package brailleprinter
 
 import (
 	"fmt"
@@ -12,11 +11,37 @@ import (
 )
 
 func init() {
-	http.HandleFunc("/", handle)
+	http.HandleFunc("/braille", brailleHandler)
+	http.HandleFunc("/root", rootHandler)
+	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/", indexHandler)
 }
 
-func handle(w http.ResponseWriter, r *http.Request) {
-	s := "오빤 강남 스타일"
-	fmt.Fprint(w, s + "\n")
-	fmt.Fprint(w, brl_ko.Encode(s) + "\n")
+// http://braille-printer.appspot.com/ 첫 페이지 출력
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "index.html")
+	/*
+	s := "동해물과"
+	fmt.Fprint(w, "<!DOCTYPE html><html><head></head><body>")
+	fmt.Fprint(w, s + "<br>")
+	fmt.Fprint(w, braille.Encode(s) + "\n")
+	fmt.Fprint(w, "</body></html>")
+	*/
+}
+
+// root 로그인 화면 출력
+func rootHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "root.html")
+}
+
+// root 로그인 처리
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	rootInsert(w, r)
+}
+
+func brailleHandler(w http.ResponseWriter, r *http.Request) {
+	src := r.FormValue("b-input")
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	fmt.Fprint(w, brl_ko.Encode(src))
 }
