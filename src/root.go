@@ -3,10 +3,12 @@
 
 package brailleprinter
 
+/*
 import (
 	"net/http"
 	"appengine"
 	"appengine/datastore"
+	"fmt"
 )
 
 type Root struct {
@@ -14,6 +16,31 @@ type Root struct {
 	Pw string
 	Using bool
 }
+
+type PrintQ struct {
+	Type string
+	Key string
+	Origin string
+	Result string
+}
+
+func insertKindHandler(w http.ResponseWriter, r *http.Request) {
+	c := appengine.NewContext(r)
+	printq := PrintQ{
+		Type: "label",
+		Key: "examplekey",
+		Origin: "테스트",
+		Result: "테스트변환",
+	}
+
+	_, err := datastore.Put(c, datastore.NewIncompleteKey(c, "PrintQ", nil), &printq)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	fmt.Fprint(w, "success")
+}
+
 
 func rootInsert(w http.ResponseWriter, r *http.Request) {
 	id := r.FormValue("root-id")
@@ -38,3 +65,5 @@ func rootInsert(w http.ResponseWriter, r *http.Request) {
 	}
 	http.Redirect(w, r, "/", http.StatusFound)
 }
+*/
+

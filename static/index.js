@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    set_speech_input_lang();
+
     $("#result").focus(function() {
         $(this).blur();
     });
@@ -31,8 +33,22 @@ function do_braille() {
     });
 }
 
+// TODO: 로컬 프린터인지 printq에 넣을지 구분하도록 해야함
 function do_print() {
     alert($("#result").html());
+}
+
+function set_speech_input_lang() {
+    lang = get_browser_lang();
+    if (lang == "ko") {
+        lang = "ko-KR";
+    } else if (lang == "en") {
+        lang = "en-US";
+    } else {
+        lang = "ko-KR";
+    }
+        
+    $("#input").attr("lang", lang);
 }
 
 function get_browser_lang() {

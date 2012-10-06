@@ -12,8 +12,9 @@ import (
 )
 
 func init() {
-	http.HandleFunc("/braille", brailleHandler)
 	http.HandleFunc("/root", rootHandler)
+	http.HandleFunc("/braille", brailleHandler)
+	http.HandleFunc("/printq/add", printqAddHandler)
 	http.HandleFunc("/", indexHandler)
 }
 
@@ -21,11 +22,11 @@ func init() {
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
 	/*
-		s := "동해물과"
-		fmt.Fprint(w, "<!DOCTYPE html><html><head></head><body>")
-		fmt.Fprint(w, s + "<br>")
-		fmt.Fprint(w, braille.Encode(s) + "\n")
-		fmt.Fprint(w, "</body></html>")
+	s := "동해물과"
+	fmt.Fprint(w, "<!DOCTYPE html><html><head></head><body>")
+	fmt.Fprint(w, s + "<br>")
+	fmt.Fprint(w, braille.Encode(s) + "\n")
+	fmt.Fprint(w, "</body></html>")
 	*/
 }
 
