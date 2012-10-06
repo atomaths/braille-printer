@@ -23,7 +23,7 @@ function do_braille() {
         return false;
     }
 
-    var postdata = "input=" + inputval + "&lang=" + get_browser_lang();
+    var postdata = "input=" + inputval + "&lang=" + get_browser_lang() + "&format=text";
 
     $.post("/braille", postdata, function(result) {
         $("#ly-result").show();
@@ -35,7 +35,18 @@ function do_braille() {
 
 // TODO: 로컬 프린터인지 printq에 넣을지 구분하도록 해야함
 function do_print() {
-    alert($("#result").html());
+    var inputval = $.trim($("#input").val());
+    if (inputval == "") {
+        $("#input").focus();
+        return false;
+    }
+
+    var postdata = "input=" + inputval + "&lang=" + get_browser_lang();
+
+    $.post("/printq/add", postdata, function(result) {
+        $("#input").blur();
+        alert("printed");
+    });
 }
 
 function set_speech_input_lang() {

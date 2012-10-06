@@ -29,6 +29,7 @@ And, connect to `localhost:8080` with browser
     POST /braille
       input: 변환할스트링
       lang: auto|ko|en
+      format: svg|text
 
     POST /printq/add
       input: 변환할스트링

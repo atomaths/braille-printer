@@ -4,6 +4,7 @@
 package brailleprinter
 
 import (
+	"fmt"
 	"net/http"
 	svg "github.com/ajstarks/svgo"
 	brl_ko "github.com/suapapa/go_braille/ko"
@@ -21,13 +22,6 @@ func init() {
 // http://braille-printer.appspot.com/ 첫 페이지 출력
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "index.html")
-	/*
-	s := "동해물과"
-	fmt.Fprint(w, "<!DOCTYPE html><html><head></head><body>")
-	fmt.Fprint(w, s + "<br>")
-	fmt.Fprint(w, braille.Encode(s) + "\n")
-	fmt.Fprint(w, "</body></html>")
-	*/
 }
 
 // root 로그인 화면 출력
@@ -54,12 +48,17 @@ func drawBrailleStr(canvas *svg.SVG, bStr string, bLen int) {
 	}
 }
 
+// API: POST /braille
 func brailleHandler(w http.ResponseWriter, r *http.Request) {
 	src := r.FormValue("input")
 	lang := r.FormValue("lang")
 	if lang == "" {
 		// TODO: lang이 없거나 auto이면 언어 판단해야함
 		lang = "ko"
+	}
+	format := r.FormValue("format")
+	if format == "" {
+		format = "svg"
 	}
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -72,8 +71,11 @@ func brailleHandler(w http.ResponseWriter, r *http.Request) {
 		bStr, bLen = brl_en.Encode(src)
 	}
 
-	canvas := svg.New(w)
-	defer canvas.End()
-
-	drawBrailleStr(canvas, bStr, bLen)
+	if format == "svg" {
+		canvas := svg.New(w)
+		defer canvas.End()
+		drawBrailleStr(canvas, bStr, bLen)
+	} else {
+		fmt.Fprint(w, bStr)
+	}
 }
