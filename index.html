@@ -17,7 +17,7 @@
 <div style="width: 100%; text-align: center; margin-top: 20px;">
 <div style="width: 800px; display: inline-block; border:">
 
-  <h2 style="font-family: Arial">Braille Printer</h2>
+  <h1 style="font-family: Arial">Braille Printer</h1>
 
   <?xml version="1.0"?>
   <svg width="394" height="46"
@@ -70,7 +70,7 @@
 </svg>
   
   <div>
-    <input id="b-input" name="b-input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="en-US">
+    <input id="input" name="input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="en-US">
   </div>
   <div style="margin-top: 10px;">
     <button id="btn-braille" class="btn">braille</button>
@@ -84,6 +84,10 @@
     <div style="text-align: right; margin-right: 45px;">
       <button id="btn-print" style="width: 70px; height: 33px; font-size: 16px;">print</button>
     </div>
+  </div>
+
+  <div style="margin-top: 330px;">
+    <img src="https://developers.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />
   </div>
     
 </div>

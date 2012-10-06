@@ -3,8 +3,8 @@ $(document).ready(function() {
         $(this).blur();
     });
     //$("#result").autoGrow();
-    $("#b-input").focus();
-    $("#b-input").keyup(function(e) {
+    $("#input").focus();
+    $("#input").keyup(function(e) {
         if (e.keyCode == 13) {
             do_braille();
         }
@@ -15,17 +15,19 @@ $(document).ready(function() {
 
 // 입력한 내용을 서버에 /braille API 호출로 점자로 변환.
 function do_braille() {
-    var inputval = $.trim($("#b-input").val());
+    var inputval = $.trim($("#input").val());
     if (inputval == "") {
-        $("#b-input").focus();
+        $("#input").focus();
         return false;
     }
 
-    $.post("/braille", "b-input=" + inputval, function(result) {
+    var postdata = "input=" + inputval + "&lang=" + get_browser_lang();
+
+    $.post("/braille", postdata, function(result) {
         $("#ly-result").show();
         $("#result").html(result);
         //$("#result").autoGrow();
-        $("#b-input").blur();
+        $("#input").blur();
     });
 }
 
@@ -33,6 +35,15 @@ function do_print() {
     alert($("#result").html());
 }
 
+function get_browser_lang() {
+    var lang = window.navigator.userLanguage || window.navigator.language;
+    lang = lang.toLowerCase().substring(0, 2);
+    if (lang == "ko" || lang == "en") {
+        return lang;
+    } else {
+        return "auto";
+    }
+}
 
 /*
 // textarea auto grow plugin
