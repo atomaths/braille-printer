@@ -2,7 +2,7 @@ $(document).ready(function() {
     $("#result").focus(function() {
         $(this).blur();
     });
-    $("#result").autoGrow();
+    //$("#result").autoGrow();
     $("#b-input").focus();
     $("#b-input").keyup(function(e) {
         if (e.keyCode == 13) {
@@ -24,7 +24,7 @@ function do_braille() {
     $.post("/braille", "b-input=" + inputval, function(result) {
         $("#ly-result").show();
         $("#result").html(result);
-        $("#result").autoGrow();
+        //$("#result").autoGrow();
         $("#b-input").blur();
     });
 }
@@ -34,6 +34,7 @@ function do_print() {
 }
 
 
+/*
 // textarea auto grow plugin
 jQuery.fn.autoGrow = function(){
     return this.each(function(){
@@ -87,4 +88,5 @@ jQuery.fn.autoGrow = function(){
         growByRef(this);
     });
 };
+*/
 

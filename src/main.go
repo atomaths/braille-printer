@@ -4,7 +4,7 @@
 package brailleprinter
 
 import (
-	"fmt"
+	//"fmt"
 	"net/http"
 	//brl "github.com/suapapa/go_braille"
 	svg "github.com/ajstarks/svgo"
@@ -65,7 +65,7 @@ func brailleHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	bStr, bLen := brl_ko.Encode(src)
-	fmt.Fprint(w, bStr)
+	//fmt.Fprint(w, bStr)
 
 	canvas := svg.New(w)
 	defer canvas.End()
