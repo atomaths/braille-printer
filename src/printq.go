@@ -131,7 +131,7 @@ func printqListHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Datastore에 조회할 쿼리 만듬.
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("PrintQ").Filter("Key =", authKey)
+	q := datastore.NewQuery("PrintQ").Filter("Key =", authKey).Filter("Status =", 0)
 	if label != "all" {
 		q = q.Filter("Type =", label)
 	}
