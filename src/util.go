@@ -10,15 +10,15 @@ import (
 )
 
 func parseQueryString(r *http.Request) (url.Values, error) {
-	rawURL := "http://"
-	if r.URL.IsAbs() {
-		rawURL = r.URL.Scheme + "://"
-	}
-	rawURL += r.Host + r.RequestURI
+//	rawURL := "http://"
+//	if r.URL.IsAbs() {
+//		rawURL = r.URL.Scheme + "://"
+//	}
+//	rawURL += r.Host + r.RequestURI
 
-	u, err := url.Parse(rawURL)
+	u, err := url.Parse(r.URL.RequestURI())
 	if err != nil {
-		return nil, errors.New("Bad Request")
+		return nil, errors.New("parseQueryString(): Bad Request " + r.URL.RequestURI())
 	}
 	return u.Query(), nil
 }
