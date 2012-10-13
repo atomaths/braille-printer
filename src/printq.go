@@ -43,6 +43,7 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	/*
 	var authKey string
 	if strings.Contains(r.Referer(), "http://localhost") ||
 		strings.Contains(r.Referer(), "http://braille-printer.appspot.com") {
@@ -51,7 +52,12 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
+	*/
 
+	authKey := r.FormValue("key")
+	if authKey == "" {
+		authKey = EXAMPLE_AUTHKEY
+	}
 	input := r.FormValue("input")
 	lang := r.FormValue("lang")
 	if lang == "" {
