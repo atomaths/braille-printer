@@ -17,6 +17,7 @@ func init() {
 	http.HandleFunc("/braille", brailleHandler)
 	http.HandleFunc("/printq/add", printqAddHandler)
 	http.HandleFunc("/printq/list", printqListHandler)
+	http.HandleFunc("/printq/item", printqItemHandler)
 	http.HandleFunc("/", indexHandler)
 }
 
