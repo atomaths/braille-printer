@@ -206,3 +206,53 @@ func printqItemHandler(w http.ResponseWriter, r *http.Request) {
 	b, _ := json.Marshal(result)
 	fmt.Fprint(w, string(b))
 }
+
+// API: POST /printq/update
+//   qid: Print queue ID
+//   status: 1|0
+//   key: examplekey
+func printqUpdateHandler(w http.ResponseWriter, r *http.Request) {
+	if strings.ToUpper(r.Method) != "POST" {
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	qs, err := parseQueryString(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	qid := qs.Get("qid")
+	if qid == "" {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	status, _ := strconv.Atoi(qs.Get("status"))
+
+	authKey := qs.Get("key")
+	if authKey == "" {
+		authKey = EXAMPLE_AUTHKEY
+	}
+
+	// App Engine에서 update는 같은 key로 기존 entity를 put 하면 되는데
+	// 모든 property를 그대로 다시 put 해줘야 한다.
+	var item PrintQ
+	c := appengine.NewContext(r)
+	intID, _ := strconv.Atoi(qid)
+	intID64 := int64(intID)
+	itemKey := datastore.NewKey(c, "PrintQ", "", intID64, nil)
+	if err = datastore.Get(c, itemKey, &item); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	item.Status = status
+
+	_, err = datastore.Put(c, itemKey, &item)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
