@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=880" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="application-name" content="Braille Printer">
   <meta name="keywords" content="braille printer, 점자 프린터">
   <meta name="description" content="Cloud Braille Printer, 클라우드 점자 프린터">
@@ -17,6 +17,7 @@
 <div style="width: 100%; text-align: center; margin-top: 20px;">
 <div style="width: 800px; display: inline-block; border:">
 
+<div id="title-en" style="display: none;">
   <h1 style="font-family: Arial">Braille Printer</h1>
 
   <?xml version="1.0"?>
@@ -68,6 +69,45 @@
 <circle cx="376" cy="28" r="3" />
 <circle cx="386" cy="18" r="3" />
 </svg>
+</div>
+<div id="title-ko">
+  <h1 style="font-family: Airal">점자 프린터</h1>
+<?xml version="1.0"?>
+<svg width="302" height="46"
+     xmlns="http://www.w3.org/2000/svg" 
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+<circle cx="18" cy="8" r="3" />
+<circle cx="18" cy="28" r="3" />
+<circle cx="31" cy="18" r="3" />
+<circle cx="31" cy="28" r="3" />
+<circle cx="41" cy="8" r="3" />
+<circle cx="54" cy="18" r="3" />
+<circle cx="64" cy="28" r="3" />
+<circle cx="87" cy="8" r="3" />
+<circle cx="87" cy="28" r="3" />
+<circle cx="100" cy="8" r="3" />
+<circle cx="100" cy="18" r="3" />
+<circle cx="110" cy="28" r="3" />
+<circle cx="146" cy="8" r="3" />
+<circle cx="156" cy="8" r="3" />
+<circle cx="156" cy="18" r="3" />
+<circle cx="169" cy="18" r="3" />
+<circle cx="179" cy="8" r="3" />
+<circle cx="179" cy="28" r="3" />
+<circle cx="202" cy="18" r="3" />
+<circle cx="215" cy="8" r="3" />
+<circle cx="215" cy="28" r="3" />
+<circle cx="225" cy="18" r="3" />
+<circle cx="238" cy="18" r="3" />
+<circle cx="248" cy="8" r="3" />
+<circle cx="261" cy="8" r="3" />
+<circle cx="261" cy="18" r="3" />
+<circle cx="271" cy="18" r="3" />
+<circle cx="284" cy="18" r="3" />
+<circle cx="284" cy="28" r="3" />
+<circle cx="294" cy="8" r="3" />
+</svg>
+</div>
   
   <div>
     <input id="input" name="input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="ko-KR">

@@ -1,5 +1,10 @@
 $(document).ready(function() {
     set_speech_input_lang();
+    var lang = get_browser_lang();
+    if (lang != "ko") {
+        $("#title-ko").hide();
+        $("#title-en").show();
+    }
 
     $("#result").focus(function() {
         $(this).blur();
@@ -23,7 +28,7 @@ function do_braille() {
         return false;
     }
 
-    var postdata = "input=" + inputval + "&lang=" + get_browser_lang() + "&format=text";
+    var postdata = "input=" + inputval + "&lang=" + get_browser_lang() + "&format=svg";
 
     $.post("/braille", postdata, function(result) {
         $("#ly-result").show();
