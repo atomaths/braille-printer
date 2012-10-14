@@ -2,6 +2,11 @@
 
 Source of [Braille Printer](http://braille-printer.appspot.com/)
 
+## Clients
+
+- [CLI client](https://github.com/dalinaum/braille-printer-client)
+- [Chrome Extension](https://github.com/golanger/braille-printer-chrome-extension)
+
 ## Dependency
 
 It uses [hangul](https://github.com/suapapa/go_hangul)
