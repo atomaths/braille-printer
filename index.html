@@ -14,13 +14,10 @@
 </head>
 <body>
 
-<!-- Github banner -->
-<a href="https://github.com/golanger/braille-printer">
-  <img
-    style="position: absolute; top: 0; right: 0px; border: 0;"
-    src="https://a248.e.akamai.net/assets.github.com/img/7afbc8b248c68eb468279e8c17986ad46549fb71/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67"
-    alt="Fork me on GitHub">
-</a>
+<div id="toast" style="position: absolute; top: 0; left: 430px; width: 500px; height: 26px; background-color: yellow; display: none; text-align: center; line-height: 26px;"></div>
+
+<!-- GitHub Ribbon -->
+<a href="https://github.com/golanger/braille-printer" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <div style="width: 100%; text-align: center; margin-top: 20px;">
 <div style="width: 800px; display: inline-block; border:">
@@ -121,7 +118,7 @@
     <input id="input" name="input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="ko-KR">
   </div>
   <div style="margin-top: 10px;">
-    <button id="btn-braille" class="btn">braille</button>
+    <button id="btn-braille" class="btn">Braille</button>
   </div>
     
   <div id="ly-result" style="display: none;">
@@ -130,7 +127,8 @@
     <textarea id="result" rows="1" cols="55" readonly="readonly"></textarea>
     -->
     <div style="text-align: right; margin-right: 45px;">
-      <button id="btn-print" style="width: 70px; height: 33px; font-size: 16px;">print</button>
+      <button id="btn-cloud-print" style="height: 33px; font-size: 16px;">Cloud Print</button>
+      <button id="btn-print" style="height: 33px; font-size: 16px;">Print</button>
     </div>
   </div>
 
@@ -140,6 +138,6 @@
     
 </div>
 </div>
-
+<script src="/static/jquery.printpage.js"></script>
 </body>
 </html>

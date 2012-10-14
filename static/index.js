@@ -17,7 +17,10 @@ $(document).ready(function() {
         }
     });
     $("#btn-braille").click(do_braille);
-    $("#btn-print").click(do_print);
+    $("#btn-cloud-print").click(do_print);
+    $("#btn-print").click(function() {
+        $("#result").print();
+    });
 });
 
 // 입력한 내용을 서버에 /braille API 호출로 점자로 변환.
@@ -50,7 +53,11 @@ function do_print() {
 
     $.post("/printq/add", postdata, function(result) {
         $("#input").blur();
-        alert("printed");
+        $("#toast").html("Print reserved.").fadeIn("slow", function() {
+            setTimeout(function() {
+                $("#toast").fadeOut("slow");
+            }, 3000);
+        });
     });
 }
 
