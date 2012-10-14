@@ -32,25 +32,6 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "root/root.html")
 }
 
-func drawBrailleStr(canvas *svg.SVG, bStr string, bLen int) {
-	dot := 10
-	margin := 3
-
-	cw := bLen*(dot*2) + (bLen+1)*margin
-	ch := margin*2 + dot*4
-	canvas.Start(cw, ch)
-
-	x := margin
-	for _, c := range bStr {
-		if c & 0x2800 != 0x2800 {
-			continue
-		}
-		brl_svg.Draw(canvas, c, x, margin, dot)
-		x += dot * 2
-		x += margin
-	}
-}
-
 // API: POST /braille
 func brailleHandler(w http.ResponseWriter, r *http.Request) {
 	src := r.FormValue("input")
@@ -66,18 +47,18 @@ func brailleHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 
-	var bStr string; var bLen int
+	var bStr string
 
 	if lang == "ko" {
-		bStr, bLen = brl_ko.Encode(src)
+		bStr, _ = brl_ko.Encode(src)
 	} else if lang == "en" {
-		bStr, bLen = brl_en.Encode(src)
+		bStr, _ = brl_en.Encode(src)
 	}
 
 	if format == "svg" {
 		canvas := svg.New(w)
 		defer canvas.End()
-		drawBrailleStr(canvas, bStr, bLen)
+		brl_svg.DrawPage30(canvas, bStr)
 	} else {
 		fmt.Fprint(w, bStr)
 	}

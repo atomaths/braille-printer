@@ -12,6 +12,7 @@ import (
 	svg "github.com/ajstarks/svgo"
 	brl_en "github.com/suapapa/go_braille"
 	brl_ko "github.com/suapapa/go_braille/ko"
+	brl_svg "github.com/suapapa/go_braille/svg"
 	"net/http"
 	"strconv"
 	"strings"
@@ -72,19 +73,18 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var bStr string
-	var bLen int
 
 	if lang == "ko" {
-		bStr, bLen = brl_ko.Encode(input)
+		bStr, _ = brl_ko.Encode(input)
 	} else if lang == "en" {
-		bStr, bLen = brl_en.Encode(input)
+		bStr, _ = brl_en.Encode(input)
 	}
 
 	buf := bytes.NewBuffer(make([]byte, 24288))
 
 	canvas := svg.New(buf)
 	defer canvas.End()
-	drawBrailleStr(canvas, bStr, bLen)
+	brl_svg.DrawPage30(canvas, bStr)
 
 	printq := PrintQ{
 		Type:       label,
