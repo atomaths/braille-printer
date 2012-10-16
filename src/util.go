@@ -4,17 +4,17 @@
 package brailleprinter
 
 import (
+	"errors"
 	"net/http"
 	"net/url"
-	"errors"
 )
 
 func parseQueryString(r *http.Request) (url.Values, error) {
-//	rawURL := "http://"
-//	if r.URL.IsAbs() {
-//		rawURL = r.URL.Scheme + "://"
-//	}
-//	rawURL += r.Host + r.RequestURI
+	//	rawURL := "http://"
+	//	if r.URL.IsAbs() {
+	//		rawURL = r.URL.Scheme + "://"
+	//	}
+	//	rawURL += r.Host + r.RequestURI
 
 	u, err := url.Parse(r.URL.RequestURI())
 	if err != nil {
