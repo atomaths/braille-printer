@@ -45,14 +45,14 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	/*
-	var authKey string
-	if strings.Contains(r.Referer(), "http://localhost") ||
-		strings.Contains(r.Referer(), "http://braille-printer.appspot.com") {
-		authKey = EXAMPLE_AUTHKEY
-	} else {
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
-		return
-	}
+		var authKey string
+		if strings.Contains(r.Referer(), "http://localhost") ||
+			strings.Contains(r.Referer(), "http://braille-printer.appspot.com") {
+			authKey = EXAMPLE_AUTHKEY
+		} else {
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			return
+		}
 	*/
 
 	authKey := r.FormValue("key")
