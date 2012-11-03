@@ -29,19 +29,29 @@ And, connect to `localhost:8080` with browser
 
 ## APIs
 
-    Host: http://braille-printer.appspot.com/
+- Host: http://braille-printer.appspot.com/
+
+### 사용자 
+
+점자 변환
 
     POST /braille
       input: 변환할스트링
       lang: auto|ko|en
       format: svg|text
 
+점자 변환 및 클라우드 프린팅 요청
+
     POST /printq/add
       input: 변환할스트링
       lang: auto|ko|en
-      key: examplekey
+      key: examplekey_user
 
-    GET  /printq/list?type=label|paper|all&key=examplekey
+### 프린터
+
+인쇄 대기중인 목록 가져오기
+
+    GET  /printq/list?type=label|paper|all&key=examplekey_printer
       { 
         [
           {"qid": 1234, 
@@ -51,10 +61,15 @@ And, connect to `localhost:8080` with browser
         ]
       }
 
-    GET  /printq/item?qid=1234&format=text|svg&key=examplekey
+특정 인쇄 아이디의 내용 가져오기 
+
+    GET  /printq/item?qid=1234&format=text|svg&key=examplekey_printer
       {
         "origin": "변환할 문자열",
         "result": "변환된 점자"
       }
 
-    POST /printq/update?qid=1234&status=1&key=examplekey
+특정 인쇄 아이디의 상태(인쇄됨) 변경
+
+    POST /printq/update?qid=1234&status=1&key=examplekey_printer
+
