@@ -5,11 +5,11 @@ package brailleprinter
 
 import (
 	"fmt"
-	"net/http"
 	svg "github.com/ajstarks/svgo"
-	brl_ko "github.com/suapapa/go_braille/ko"
 	brl_en "github.com/suapapa/go_braille"
+	brl_ko "github.com/suapapa/go_braille/ko"
 	brl_svg "github.com/suapapa/go_braille/svg"
+	"net/http"
 )
 
 func init() {
