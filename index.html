@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="application-name" content="Braille Printer">
   <meta name="keywords" content="braille printer, 점자 프린터">
   <meta name="description" content="Cloud Braille Printer, 클라우드 점자 프린터">
   <title>Braille Printer</title>
-  <link rel="stylesheet" href="/static/index.css"/>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src="/static/index.js"></script>
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="/static/index.css">
+  <style type="text/css">
+    body {
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
 
 <div id="toast" style="position: absolute; top: 0; left: 430px; width: 500px; height: 26px; background-color: yellow; display: none; text-align: center; line-height: 26px;"></div>
 
-<!-- GitHub Ribbon -->
-<a href="https://github.com/golanger/braille-printer" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-<div style="width: 100%; text-align: center; margin-top: 20px;">
-<div style="width: 800px; display: inline-block; border:">
+<div class="container" style="text-align: center;">
 
 <div id="title-en" style="display: none;">
   <h1 style="font-family: Arial">Braille Printer</h1>
@@ -118,7 +120,7 @@
     <input id="input" name="input" type="text" x-webkit-speech onwebkitspeechchange="do_braille()" lang="ko-KR">
   </div>
   <div style="margin-top: 10px;">
-    <button id="btn-braille" class="btn">Braille</button>
+    <button id="btn-braille" class="btn btn-primary">Braille</button>
   </div>
     
   <div id="ly-result" style="display: none;">
@@ -126,18 +128,26 @@
     <!--
     <textarea id="result" rows="1" cols="55" readonly="readonly"></textarea>
     -->
-    <div style="text-align: right; margin-right: 45px;">
-      <button id="btn-cloud-print" style="height: 33px; font-size: 16px;">Cloud Print</button>
-      <button id="btn-print" style="height: 33px; font-size: 16px;">Print</button>
+    <div>
+      <button id="btn-cloud-print" class="btn btn-success" style="height: 33px; font-size: 16px;">Cloud Print</button>
+      <button id="btn-print" class="btn btn-primary" style="height: 33px; font-size: 16px;">Print</button>
     </div>
   </div>
 
-  <div style="margin-top: 330px;">
-    <img src="https://developers.google.com/appengine/images/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />
+  <div id="app-logo" style="display: none;">
+    <img src="/static/appengine-silver-120x30.gif" alt="Powered by Google App Engine" />&nbsp;
+    <img src="/static/appengine-go.jpg" alt="App Engine for Go" />
   </div>
     
 </div>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script src="/static/jquery.printpage.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/index.js"></script>
+
+<!-- GitHub Ribbon -->
+<a id="ribbon" href="https://github.com/golanger/braille-printer" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
 </body>
 </html>

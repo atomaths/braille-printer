@@ -26,7 +26,7 @@ const (
 
 type PrintQ struct {
 	Type       string
-	Key        string
+	PrinterID  string
 	Origin     string `datastore:",noindex"`
 	ResultText string `datastore:",noindex"`
 	ResultSVG  []byte `datastore:",noindex"`
@@ -45,14 +45,14 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	/*
-	var authKey string
-	if strings.Contains(r.Referer(), "http://localhost") ||
-		strings.Contains(r.Referer(), "http://braille-printer.appspot.com") {
-		authKey = EXAMPLE_AUTHKEY
-	} else {
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
-		return
-	}
+		var authKey string
+		if strings.Contains(r.Referer(), "http://localhost") ||
+			strings.Contains(r.Referer(), "http://braille-printer.appspot.com") {
+			authKey = EXAMPLE_AUTHKEY
+		} else {
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			return
+		}
 	*/
 
 	authKey := r.FormValue("key")
@@ -88,7 +88,7 @@ func printqAddHandler(w http.ResponseWriter, r *http.Request) {
 
 	printq := PrintQ{
 		Type:       label,
-		Key:        authKey,
+		PrinterID:  authKey,
 		Origin:     input,
 		ResultText: bStr,
 		ResultSVG:  buf.Bytes(),
@@ -131,7 +131,7 @@ func printqListHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Datastore에 조회할 쿼리 만듬.
 	c := appengine.NewContext(r)
-	q := datastore.NewQuery("PrintQ").Filter("Key =", authKey).Filter("Status =", 0)
+	q := datastore.NewQuery("PrintQ").Filter("PrinterID =", authKey).Filter("Status =", 0)
 	if label != "all" {
 		q = q.Filter("Type =", label)
 	}

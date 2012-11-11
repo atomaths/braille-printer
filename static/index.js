@@ -21,10 +21,16 @@ $(document).ready(function() {
     $("#btn-print").click(function() {
         $("#result").print();
     });
+
+    appLogoBaseTop = $(document).height() - 150;
+    $("#app-logo").css("margin-top", ($(document).height() - 282) + "px").fadeIn();
 });
+
+var appLogoBaseTop = 0;
 
 // 입력한 내용을 서버에 /braille API 호출로 점자로 변환.
 function do_braille() {
+    $("#app-logo").hide();
     var inputval = $.trim($("#input").val());
     if (inputval == "") {
         $("#input").focus();
@@ -38,6 +44,14 @@ function do_braille() {
         $("#result").html(result);
         //$("#result").autoGrow();
         $("#input").blur();
+        
+        setTimeout(function() {
+            if ($("#btn-print").offset().top > appLogoBaseTop) {
+                $("#app-logo").css("margin-top", "25px").fadeIn();
+            } else {
+                $("#app-logo").css("margin-top", ($(document).height() - (310 + $("#ly-result").outerHeight())) + "px").fadeIn();
+            }
+        }, 1000);
     });
 }
 

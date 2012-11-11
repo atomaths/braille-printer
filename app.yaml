@@ -11,6 +11,14 @@ handlers:
 - url: /static
   static_dir: static
 
+- url: /qrcode
+  script: _go_app
+  login: admin
+
+- url: /qrcode/.*
+  script: _go_app
+  login: admin
+
 - url: /root
   script: _go_app
   login: admin
