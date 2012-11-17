@@ -37,7 +37,7 @@ function do_braille() {
         return false;
     }
 
-    var postdata = "input=" + inputval + "&lang=" + get_browser_lang() + "&format=svg";
+    var postdata = "input=" + encodeURIComponent(inputval) + "&lang=" + get_browser_lang() + "&format=svg";
 
     $.post("/braille", postdata, function(result) {
         $("#ly-result").show();
@@ -63,7 +63,7 @@ function do_print() {
         return false;
     }
 
-    var postdata = "input=" + inputval + "&lang=" + get_browser_lang();
+    var postdata = "input=" + encodeURIComponent(inputval) + "&lang=" + get_browser_lang();
 
     $.post("/printq/add", postdata, function(result) {
         $("#myModal").modal("show");
@@ -97,6 +97,8 @@ function set_speech_input_lang() {
 }
 
 function get_browser_lang() {
+    return "ko";
+
     var lang = window.navigator.userLanguage || window.navigator.language;
     lang = lang.toLowerCase().substring(0, 2);
     if (lang == "ko" || lang == "en") {

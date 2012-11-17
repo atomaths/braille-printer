@@ -30,11 +30,11 @@ type PrintQ struct {
 	Origin     string
 	ResultText string
 	ResultSVG  []byte
-//	Origin     string `datastore:",noindex"`
-//	ResultText string `datastore:",noindex"`
-//	ResultSVG  []byte `datastore:",noindex"`
-	Status     int
-	CTime      time.Time
+	//	Origin     string `datastore:",noindex"`
+	//	ResultText string `datastore:",noindex"`
+	//	ResultSVG  []byte `datastore:",noindex"`
+	Status int
+	CTime  time.Time
 }
 
 // API: POST /printq/add
