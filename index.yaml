@@ -12,18 +12,7 @@ indexes:
 
 - kind: PrintQ
   properties:
-  - name: Key
-  - name: CTime
-
-- kind: PrintQ
-  properties:
-  - name: Key
+  - name: PrinterID
   - name: Status
-  - name: Type
-  - name: CTime
-
-- kind: PrintQ
-  properties:
-  - name: Key
   - name: Type
   - name: CTime

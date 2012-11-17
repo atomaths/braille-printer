@@ -27,9 +27,12 @@ const (
 type PrintQ struct {
 	Type       string
 	PrinterID  string
-	Origin     string `datastore:",noindex"`
-	ResultText string `datastore:",noindex"`
-	ResultSVG  []byte `datastore:",noindex"`
+	Origin     string
+	ResultText string
+	ResultSVG  []byte
+//	Origin     string `datastore:",noindex"`
+//	ResultText string `datastore:",noindex"`
+//	ResultSVG  []byte `datastore:",noindex"`
 	Status     int
 	CTime      time.Time
 }

@@ -66,12 +66,20 @@ function do_print() {
     var postdata = "input=" + inputval + "&lang=" + get_browser_lang();
 
     $.post("/printq/add", postdata, function(result) {
+        $("#myModal").modal("show");
+        if ($("#ribbon").css("display") == "none") {
+            $("#btn-cloud-print").addClass("disabled");
+            $("#btn-cloud-print").unbind("click");
+            $("#btn-cloud-print").click(function() { alert("일회용 키를 발급받으세요."); });
+        }
+        /*
         $("#input").blur();
         $("#toast").html("Print reserved.").fadeIn("slow", function() {
             setTimeout(function() {
                 $("#toast").fadeOut("slow");
             }, 3000);
         });
+        */
     });
 }
 
